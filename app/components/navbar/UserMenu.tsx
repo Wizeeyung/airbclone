@@ -37,8 +37,8 @@ const UserMenu = () => {
         {isOpen && (
           <div className="absolute rounded-xl shadow-md w-[40vw] md:w-3/4 bg-white overflow-hidden right-0 top-12 text-sm">
               <div className="flex flex-col cursor-pointer">
-                <MenuItem onClick={()=>{dispatch(openModal())}} label="Login"/>
-                <MenuItem onClick={()=>{}} label="Sign up"/>
+                <MenuItem onClick={()=>{}} label="Login"/>
+                <MenuItem onClick={()=>{dispatch(openModal())}} label="Sign up"/>
               </div>
           </div>
         )}
