@@ -16,6 +16,8 @@ import Modal from "./Modal";
 import Heading from "../Heading";
 import Input from "../inputs/Input";
 import { registerValidation } from "@/lib/validation/formValidationSchema";
+import toast from "react-hot-toast";
+import Button from "../Button";
 
 const RegisterModal = () => {
 
@@ -43,7 +45,8 @@ const RegisterModal = () => {
     axios.post('/api/auth/register', data).then(()=>{
         dispatch((closeModal()))
     }).catch((error)=>{
-      console.log(error);
+      toast.error("oops something went wrong!!")
+      // console.log(error);
     }).finally(()=>{
       setIsLoading(false);
     })
@@ -90,9 +93,37 @@ const RegisterModal = () => {
         errors={errors}
         required
         validate={registerValidation.password}
+      /> 
+    </div>
+  );
+
+
+  const footerContent =(
+    <div className="flex flex-col gap-4 mt-3">
+      <hr />
+      <Button 
+        outline
+        label="Continue with google"
+        icon={FcGoogle}
+        onClick={()=>{}}
       />
 
-      
+      <Button 
+        outline
+        label="Continue with Github"
+        icon={AiFillGithub}
+        onClick={()=>{}}
+      />
+
+      <div className="flex justify-center items-center gap-2">
+        <div>
+          Already have an account?
+        </div>
+        <div onClick={()=> dispatch(closeModal())} className="text-neutral-800 cursor-pointer hover:underline">
+          Log in
+        </div>
+      </div>
+
     </div>
   )
 
@@ -107,6 +138,7 @@ const RegisterModal = () => {
       }}
       onSubmit={handleSubmit(onSubmit)}
       body={bodyContent}
+      footer={footerContent}
     />
   )
 }

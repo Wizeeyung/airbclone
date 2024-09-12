@@ -1,0 +1,54 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+//Model user
+model User {
+  //using optional cause at times we would register with google or github which doesnt require name, email, images etc.
+  id             String    @id @default(auto()) @map("_id") @db.ObjectId
+  name           String?
+  email          String?   @unique
+  emailVerified  DateTime?
+  image          String?
+  hashedPassword String?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  // arrays of favorite id
+  favoriteIds    String[]  @db.ObjectId
+
+  //Relationships of the user table with another table
+  // users can have many accounts
+  accounts     Account[]
+  listings     Listing[]
+  reservations Reservation[]
+}
+
+model Account {
+  id                String  @id @default(auto()) @map("_id") @db.ObjectId
+  userId            String  @db.ObjectId
+  type              String
+  provider          String
+  providerAccountId String
+  refreshToken      String? @db.String
+  accessToken       String? @db.String
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.String
+  session_state     String?
+
+  //Relationships of the account table with another table Which is user and creates a relation with the user using the field UserId and references to the user model id field (meaning it would store id for the User inside the userId field in the account model)
+  //When a User record is deleted, all accounts associated with that user (through the userId foreign key) will also be deleted automatically from the Account model. This avoids having orphaned records in the Account table when the corresponding User is removed.
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}

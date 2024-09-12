@@ -41,6 +41,7 @@ const Button: React.FC<ButtonProps> = ({
       `}
     >
       {Icon && <Icon size={24} className="mr-2" />}
+      {disabled && 'loading'}
       {label}
     </button>
   );

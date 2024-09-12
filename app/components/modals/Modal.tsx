@@ -139,6 +139,7 @@ const Modal: React.FC<ModalProps> = ({
                 
                  <Button  disabled={disabled} onClick={handleSubmit} label={actionLabel} className="w-full"/>
                 </div>
+                {footer}
               </div>
 
             </div>
