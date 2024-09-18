@@ -7,7 +7,7 @@ interface RegisterModalStore {
 }
 
 const initialState: RegisterModalStore = {
-  isOpen: true,
+  isOpen: false,
   onOpen: () => {},
   onClose: () => {},
 };

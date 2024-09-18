@@ -1,6 +1,7 @@
 "use client";
 
 import { IconType } from "react-icons";
+import ClipLoader from "react-spinners/ClipLoader";
 
 interface ButtonProps {
   label: string;
@@ -41,7 +42,16 @@ const Button: React.FC<ButtonProps> = ({
       `}
     >
       {Icon && <Icon size={24} className="mr-2" />}
-      {disabled && 'loading'}
+      {disabled && (
+        <ClipLoader
+        color="white"
+        loading
+        size={16}
+        aria-label="Loading Spinner"
+        data-testid="loader"
+        className="mr-2"
+      />
+      )}
       {label}
     </button>
   );

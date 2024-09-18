@@ -2,6 +2,7 @@ import type { Action, ThunkAction } from "@reduxjs/toolkit";
 import { combineSlices, configureStore } from "@reduxjs/toolkit";
 import {userSlice} from "./features/user/userSlice";
 import storage from "redux-persist/lib/storage";
+import { loginModalSlice } from "./features/loginModal/loginModalSlice";
 import {registerModalSlice} from "./features/registerModal/registerModalSlice";
 
 
@@ -13,7 +14,7 @@ const persistConfig = {
 
 // `combineSlices` automatically combines the reducers using
 // their `reducerPath`s, therefore we no longer need to call `combineReducers`.
-const rootReducer = combineSlices(userSlice,registerModalSlice)
+const rootReducer = combineSlices(userSlice,registerModalSlice,loginModalSlice)
 // Infer the `RootState` type from the root reducer
 export type RootState = ReturnType<typeof rootReducer>;
 

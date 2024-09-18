@@ -6,10 +6,14 @@ import Logo from "./Logo";
 import Search from "./Search";
 import UserMenu from "./UserMenu";
 import { signInSuccess } from "@/lib/features/user/userSlice";
+import { SafeUser } from "@/app/types";
 
+interface NavbarProps{
+  currentUser?: SafeUser | null;
+}
 
-const Navbar = () => {
-
+const Navbar: React.FC<NavbarProps> = ({currentUser}) => {
+  console.log(currentUser)
   // const dispatch = useAppDispatch();
 
   // const data = dispatch(signInSuccess({
@@ -30,7 +34,7 @@ const Navbar = () => {
           <div className="flex items-center justify-between gap-3 md:gap-0">
             <Logo />
             <Search />
-            <UserMenu />
+            <UserMenu currentUser={currentUser}/>
 
           </div>
         </Container>

@@ -4,13 +4,22 @@ import { useCallback, useState } from "react";
 import { IoMdMenu } from "react-icons/io";
 import Avatar from "../Avatar";
 import MenuItem from "./MenuItem";
+import { closeModalLogin,openModalLogin } from "@/lib/features/loginModal/loginModalSlice";
 import { closeModal, openModal } from "@/lib/features/registerModal/registerModalSlice";
 import { useAppDispatch } from "@/lib/hooks";
+import { signOut } from "next-auth/react";
+import { SafeUser } from "@/app/types";
 
-const UserMenu = () => {
+interface userMenuProps{
+  currentUser: SafeUser | null;
+}
+
+
+const UserMenu: React.FC<userMenuProps> = ({currentUser}) => {
 
   const dispatch = useAppDispatch();
   const [isOpen, setIsOpen] = useState(false);
+  
 
   const toggleOpen = useCallback(()=>{
     setIsOpen((value) => !value)
@@ -37,8 +46,23 @@ const UserMenu = () => {
         {isOpen && (
           <div className="absolute rounded-xl shadow-md w-[40vw] md:w-3/4 bg-white overflow-hidden right-0 top-12 text-sm">
               <div className="flex flex-col cursor-pointer">
-                <MenuItem onClick={()=>{}} label="Login"/>
-                <MenuItem onClick={()=>{dispatch(openModal())}} label="Sign up"/>
+                {currentUser ? (
+                  <>
+                    <MenuItem onClick={()=>{}} label="My Trips"/>
+                    <MenuItem onClick={()=>{}} label="My Favorites"/>
+                    <MenuItem onClick={()=>{}} label="My Properties"/>
+                    <MenuItem onClick={()=>{}} label="My Reservations"/>
+                    <MenuItem onClick={()=>{}} label="Airbnb my home"/>
+                    <hr />
+                    <MenuItem onClick={()=>signOut()} label="Logout"/>
+                  </>
+                ): (
+                  <>
+                    <MenuItem onClick={()=>{dispatch(openModalLogin())}} label="Login"/>
+                    <MenuItem onClick={()=>{dispatch(openModal())}} label="Sign up"/>
+                  </>
+                )}
+                
               </div>
           </div>
         )}

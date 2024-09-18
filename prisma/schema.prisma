@@ -51,4 +51,39 @@ model Account {
   //Relationships of the account table with another table Which is user and creates a relation with the user using the field UserId and references to the user model id field (meaning it would store id for the User inside the userId field in the account model)
   //When a User record is deleted, all accounts associated with that user (through the userId foreign key) will also be deleted automatically from the Account model. This avoids having orphaned records in the Account table when the corresponding User is removed.
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  //means we need a unique combination of the two below;
+  @@unique([provider, providerAccountId])
+}
+
+model Listing {
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  title         String
+  description   String
+  imageSrc      String
+  createdAt     DateTime @default(now())
+  category      String
+  roomCount     Int
+  bathroomCount Int
+  guestCount    Int
+  locationValue String
+  userId        String   @db.ObjectId
+  price         Int
+
+  //every listen would have to have an array of reservations
+  user         User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  reservations Reservation[]
+}
+
+model Reservation {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId     String   @db.ObjectId
+  listingId  String   @db.ObjectId
+  startDate  DateTime
+  endDate    DateTime
+  totalPrice Int
+  createdAt  DateTime @default(now())
+
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  listing Listing @relation(fields: [listingId], references: [id], onDelete: Cascade)
 }
