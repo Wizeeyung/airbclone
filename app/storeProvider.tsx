@@ -1,31 +1,40 @@
 "use client";
+
 import type { AppStore } from "@/lib/store";
 import { makeStore } from "@/lib/store";
 import { setupListeners } from "@reduxjs/toolkit/query";
-import type { ReactNode } from "react";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useMemo } from "react";
 import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
+import { persistStore } from "redux-persist";
+import type { ReactNode } from "react";
 
 interface Props {
   readonly children: ReactNode;
 }
 
-export const StoreProvider = ({ children }: Props) => {
-  const storeRef = useRef<AppStore | null>(null);
+const StoreProvider = ({ children }: Props) => {
+  // Memoize storeRef to create store only once
+  const storeRef = useMemo(() => makeStore(), []);
 
-  if (!storeRef.current) {
-    // Create the store instance the first time this renders
-    storeRef.current = makeStore();
-  }
+  // Create a persistor from the same store instance
+  const persistor = useMemo(() => persistStore(storeRef), [storeRef]);
 
   useEffect(() => {
-    if (storeRef.current != null) {
-      // configure listeners using the provided defaults
-      // optional, but required for `refetchOnFocus`/`refetchOnReconnect` behaviors
-      const unsubscribe = setupListeners(storeRef.current.dispatch);
+    if (storeRef != null) {
+      // Setup listeners (optional, if needed for RTK Query features)
+      const unsubscribe = setupListeners(storeRef.dispatch);
       return unsubscribe;
     }
-  }, []);
+  }, [storeRef]);
 
-  return <Provider store={storeRef.current}>{children}</Provider>;
+  return (
+    <Provider store={storeRef}>
+      <PersistGate  persistor={persistor}>
+        {children}
+      </PersistGate>
+    </Provider>
+  );
 };
+
+export default StoreProvider

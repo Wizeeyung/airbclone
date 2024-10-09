@@ -70,7 +70,7 @@ model Listing {
   userId        String   @db.ObjectId
   price         Int
 
-  //every listen would have to have an array of reservations
+  //every listing would have to have an array of reservations
   user         User          @relation(fields: [userId], references: [id], onDelete: Cascade)
   reservations Reservation[]
 }
