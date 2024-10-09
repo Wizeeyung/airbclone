@@ -40,7 +40,8 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
               hover:opacity-70
               transition
               border-dashed
-              border-2p-20
+              border-2
+              p-20
               border-neutral-300
               flex
               flex-col
