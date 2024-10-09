@@ -1,7 +1,6 @@
 import type { Action, ThunkAction } from "@reduxjs/toolkit";
 import { combineSlices, configureStore } from "@reduxjs/toolkit";
 import {userSlice} from "./features/user/userSlice";
-// import storage from "./noopStorage";
 import { loginModalSlice } from "./features/loginModal/loginModalSlice";
 import {registerModalSlice} from "./features/registerModal/registerModalSlice";
 import {rentModalSlice} from "./features/rentModal/rentModalSlice";
@@ -26,7 +25,6 @@ const rootReducer = {
   rentForm: rentFormSlice.reducer,
   rentModal: rentModalSlice.reducer,
   searchModal: searchModalSlice.reducer
- 
 };
 
 const persistedReducer = persistReducer(persistConfig, combineSlices(rootReducer))

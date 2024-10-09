@@ -25,4 +25,27 @@ export const registerValidation = {
       message: "Password must contain both lowercase and uppercase letters",
     },
   },
+
+  title: {
+    required: "Title is required",
+    minLength: {
+      value: 5,
+      message: "Title must be at least 5 characters long",
+    },
+    maxLength: {
+      value: 50,
+      message: "Title must not exceed 50 characters",
+    },
+  },
+  description: {
+    required: "Description is required",
+    minLength: {
+      value: 10,
+      message: "Description must be at least 10 characters long",
+    },
+    maxLength: {
+      value: 300,
+      message: "Description must not exceed 300 characters",
+    },
+  },
 };

@@ -13,6 +13,8 @@ interface InputProps{
   register: UseFormRegister<FieldValues>
   errors: FieldErrors;
   validate?: any;
+  value?: string | number;
+  handleChange?: (e: React.ChangeEvent<HTMLInputElement>)=> void;
 }
 
 
@@ -25,8 +27,13 @@ const Input: React.FC<InputProps> = ({
   required,
   register,
   errors,
-  validate
+  validate,
+  value,
+  handleChange
 }) => {
+
+
+
   return (
     <div className="w-full relative">
       {formatPrice && (
@@ -40,6 +47,7 @@ const Input: React.FC<InputProps> = ({
         //make sure there is space on the placeholder
         placeholder=" "
         type={type}
+        value={value}
         className={
           // peer class is use to control what happens in the label on various actions that happens in the input field
           `peer w-full p-4 pt-6 font-light bg-white border-2 rounded-md outline-none transition
@@ -49,6 +57,7 @@ const Input: React.FC<InputProps> = ({
           ${errors[id] ? "focus:border-rose-500" : "focus:border-black"}
           `
         }
+        onChange={handleChange}
       />
 
       <label 

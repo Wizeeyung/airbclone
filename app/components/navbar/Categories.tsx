@@ -2,11 +2,11 @@
 import React, { lazy, Suspense } from 'react'
 import Container from '../Container'
 import { usePathname, useSearchParams } from 'next/navigation'
-import { Loading } from '../Loading'
+import { Loading } from '../loading'
 import { categories } from '@/lib/data'
 
 
-const CategoryBox = lazy(()=> import('../CategoryBox'))
+const CategoryBox = lazy(()=> import('../CategoryBox'));
 
 
 

@@ -1,21 +1,22 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { SafeUser } from "@/app/types";
 
 // Define the types for the user state
 interface UserState {
-  currentUser: User[];
+  currentUser?: SafeUser | null | undefined;
   error: string | null;
   loading: boolean;
 }
 
 // You can define the User type based on your application's requirements
-interface User {
-  [key: string]: any;
-  // Add any other user-related fields
-}
+// interface User {
+//   [key: string]: any;
+//   // Add any other user-related fields
+// }
 
 // Define the initial state with proper typing
 const initialState: UserState = {
-  currentUser: [],
+  currentUser: null,
   error: null,
   loading: false
 };
@@ -29,7 +30,7 @@ export const userSlice = createSlice({
       state.error = null;
     },
 
-    signInSuccess: (state, action: PayloadAction<User>) => {
+    signInSuccess: (state, action: PayloadAction<SafeUser | null>) => {
       state.currentUser = action.payload;
     },
 
@@ -47,7 +48,7 @@ export const userSlice = createSlice({
       state.error = null;
     },
 
-    updateSuccess: (state, action: PayloadAction<User>) => {
+    updateSuccess: (state, action: PayloadAction<SafeUser>) => {
       state.currentUser = action.payload;
       state.loading = false;
       state.error = null;
@@ -76,8 +77,7 @@ export const userSlice = createSlice({
 
     signOutSuccess: (state) => {
       state.currentUser = null;
-      state.error = null;
-      state.loading = false;
+     
     }
   }
 });

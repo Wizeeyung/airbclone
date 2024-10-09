@@ -4,9 +4,9 @@ import ClientOnly from '@/app/components/ClientOnly';
 import EmptyState from '@/app/components/EmptyState';
 import getCurrentUser from '@/app/actions/getCurrentUser';
 import getReservations from '@/app/actions/getReservations';
-import { ListingClientSkeleton } from '@/app/components/Loading';
+import { ListingClientSkeleton } from '@/app/components/loading';
 
-const ListingClient = lazy(()=> import('./ListingClient'))
+const ListingClient = lazy(()=> import('./ListingClient'));
 
 interface Iparams{
   listingId?: string;

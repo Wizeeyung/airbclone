@@ -6,7 +6,7 @@ import RegisterModal from "./components/modals/RegisterModal";
 import ToasterProvider from "./providers/ToasterProvider";
 import LoginModal from "./components/modals/LoginModal";
 import getCurrentUser from "./actions/getCurrentUser";
-import RentModal from "./components/modals/RentModal";
+import RentModal from "./components/modals/rentModal";
 import dynamic from "next/dynamic";
 import ClientOnly from "./components/ClientOnly";
 import SearchModal from "./components/modals/SearchModal";
