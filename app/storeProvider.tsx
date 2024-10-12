@@ -1,9 +1,9 @@
 "use client";
 
-import type { AppStore } from "@/lib/store";
+
 import { makeStore } from "@/lib/store";
 import { setupListeners } from "@reduxjs/toolkit/query";
-import { useEffect, useRef, useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { persistStore } from "redux-persist";

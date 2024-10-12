@@ -3,13 +3,12 @@
 import Container from '@/app/components/Container';
 import ListingHead from '@/app/components/listings/ListingHead';
 import ListingInfo from '@/app/components/listings/ListingInfo';
-import Categories from '@/app/components/navbar/Categories';
 import { SafeListing, SafeReservation, SafeUser } from '@/app/types';
 import { categories } from '@/lib/data';
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { openModalLogin } from '@/lib/features/loginModal/loginModalSlice';
 import { useRouter } from 'next/navigation';
-import { differenceInCalendarDays, differenceInDays, eachDayOfInterval } from 'date-fns';
+import { differenceInCalendarDays, eachDayOfInterval } from 'date-fns';
 import { useAppDispatch } from '@/lib/hooks';
 import axios from 'axios';
 import toast from 'react-hot-toast';

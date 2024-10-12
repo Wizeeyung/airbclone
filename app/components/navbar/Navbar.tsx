@@ -1,11 +1,9 @@
 "use client"
 
-import { useAppDispatch } from "@/lib/hooks";
 import Container from "../Container";
 import Logo from "./Logo";
 import Search from "./Search";
 import UserMenu from "./UserMenu";
-import { signInSuccess } from "@/lib/features/user/userSlice";
 import { SafeUser } from "@/app/types";
 import Categories from "./Categories";
 

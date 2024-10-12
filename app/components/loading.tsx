@@ -1,6 +1,5 @@
 import React from 'react'
 import { Skeleton } from '@/components/ui/skeleton'
-import ClipLoader from "react-spinners/ClipLoader";
 import {PuffLoader} from 'react-spinners'
 
 export const Loading = () => {

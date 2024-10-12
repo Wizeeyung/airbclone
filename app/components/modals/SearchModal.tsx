@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useCallback, useMemo, useState } from 'react'
-import { openSearchModal, closeSearchModal } from '@/lib/features/searchModal/searchModalSlice'
+import { closeSearchModal } from '@/lib/features/searchModal/searchModalSlice'
 import Modal from './Modal'
 import { useAppDispatch, useAppSelector } from '@/lib/hooks'
 import { Range } from 'react-date-range'
