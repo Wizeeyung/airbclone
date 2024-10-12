@@ -1,5 +1,7 @@
 import React from 'react'
 import { Skeleton } from '@/components/ui/skeleton'
+import ClipLoader from "react-spinners/ClipLoader";
+import {PuffLoader} from 'react-spinners'
 
 export const Loading = () => {
   return (
@@ -106,6 +108,21 @@ export const ListingClientSkeleton = () => {
     </div>
   );
 };
+
+export const Loader = () =>{
+  return(
+    <div className='h-[70vh] flex flex-col justify-center items-center'>
+        <PuffLoader
+        color="red"
+        loading
+        size={100}
+        aria-label="Loading Spinner"
+        data-testid="loader"
+        className="mr-2"
+      />
+    </div>
+  )
+}
 
 
 
