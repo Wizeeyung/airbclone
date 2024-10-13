@@ -1,5 +1,5 @@
 import { getServerSession } from "next-auth";
-import { authOptions } from "../api/auth/[...nextauth]/route";
+import { authOptions } from "@/utils/authOptions";
 
 
 //we are using this function in the layout page cause its a server component by default
