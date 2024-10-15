@@ -25,7 +25,7 @@ const rootReducer = {
   rentForm: rentFormSlice.reducer,
   rentModal: rentModalSlice.reducer,
   searchModal: searchModalSlice.reducer
-};
+}
 
 const persistedReducer = persistReducer(persistConfig, combineSlices(rootReducer))
 
